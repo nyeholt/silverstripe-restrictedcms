@@ -1,0 +1,48 @@
+---
+Name: restrictedcms
+---
+Injector:
+  RestrictedFilter:
+    class: RestrictedCmsHostFilter
+    properties:
+      allowedHosts: 
+        'www.mysite.com': 'cms.mysite.com'
+        'mysite.dev.sslocal': 'cms.mysite.dev.sslocal'
+        '*': 404
+      patterns:
+        - ^upload
+        - ^interactive
+        - ^admin
+        - ^dev
+        - ^Security
+Director:
+  rules:
+    restrictedcmshandler: RestrictedHostController
+
+---
+Name: restricted_frontend
+Only:
+  constantdefined: ENV_TYPE_FRONTEND
+---
+Injector:
+  RequestProcessor:
+    properties:
+      filters: 
+        - %$RestrictedFilter
+
+---
+Name: restricted_backend
+Only:
+  constantdefined: ENV_TYPE_BACKEND
+---
+Injector:
+  RequestProcessor:
+    properties:
+      filters: 
+        - %$RestrictedFilter
+# Include the cms.mysite.com hostname as being allowed for this backend server. 
+  RestrictedFilter:
+    properties:
+      allowedHosts:
+        'cms.mysite.com': 'cms.mysite.com'
+

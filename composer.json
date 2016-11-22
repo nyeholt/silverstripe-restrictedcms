@@ -1,0 +1,24 @@
+{
+	"name": "nyeholt/silverstripe-restrictedcms",
+	"description": "A SilverStripe CMS module that will force users to a different hostname when hitting protected URLs.",
+	"type": "silverstripe-module",
+	"keywords": [
+		"silverstripe",
+		"admin"
+	],
+	"homepage": "https://github.com/nyeholt/silverstripe-restrictedcms",
+	"license": "BSD-3-Clause",
+	"authors": [{
+		"name": "Marcus Nyeholt",
+		"email": "marcus@silverstripe.com.au"
+	}],
+	"require": {
+		"silverstripe/framework": "~3.2"
+	},
+	"extra": {
+		"installer-name": "restrictedcms",
+		"branch-alias": {
+			"dev-master": "1.0.x-dev"
+		}
+	}
+}
