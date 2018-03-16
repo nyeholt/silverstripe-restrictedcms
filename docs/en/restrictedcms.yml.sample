@@ -40,9 +40,19 @@ Injector:
     properties:
       filters: 
         - %$RestrictedFilter
-# Include the cms.mysite.com hostname as being allowed for this backend server. 
+  # Include the cms.mysite.com hostname as being allowed for this backend server. 
   RestrictedFilter:
     properties:
       allowedHosts:
         'cms.mysite.com': 'cms.mysite.com'
-
+Injector:
+  Mailer:
+    class: RestrictedCMSMailer
+    properties:
+      to_mailer: %$MailerClass
+      # These should be replaced using your values from above.
+      replace_body: 'cms.mysite.com'
+      with: 'www.mysite.com'
+  MailerClass:
+    # This should be replaced with your mailer class.
+    class: Mailer
